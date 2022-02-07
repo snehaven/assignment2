@@ -4,7 +4,36 @@ import math
 #        and digits
 # Output: function returns an encrypted string 
 def encrypt ( strng ):
-	pass
+	encrypted = "" #empty string for encrypted message
+	n = len(strng) #take length of string input
+
+	#assign rows and coloumns to matrix
+	if (n%4==0):
+		rows, cols = (int(n/4), 4)
+	else:
+		rows, cols = (int(n/4)+1, 4)
+	#create empty matrix
+	mat = [["*" for i in range(cols)] for j in range(rows)]
+
+	#populate unencrpted matrix
+	pos = 0
+	for i in range(rows):
+		for j in range(4):
+			if(pos<len(strng)):
+				mat[i][j] = strng[pos]
+				pos += 1
+			else:
+				mat[i][j] = "*"
+
+	#create encrpted message
+	for i in range(4):
+		for j in range(rows-1, -1, -1):
+			if(mat[j][i] == "*"):
+				continue
+			else:
+				encrypted += mat[j][i]
+
+	return encrypted
 
 # Input: strng is a string of 100 or less of upper case, lower case, 
 #        and digits
