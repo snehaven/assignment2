@@ -92,9 +92,10 @@ def decrypt ( strng ):
         return result
 
 def main():
+	import sys
 	# read the strings P and Q from standard input
-	P = input()
-        Q = input()
+	P = sys.stdin.readline()
+        Q = sys.stdin.readline()
 	
 	# encrypt the string P
 	encrypted = encrypt ( P )
