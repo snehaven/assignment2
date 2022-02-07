@@ -8,17 +8,17 @@ def encrypt ( strng ):
 	n = len(strng) #take length of string input
 
 	#assign rows and coloumns to matrix
-	if (n%4==0):
-		rows, cols = (int(n/4), 4)
+	if (math.sqrt(n).is_integer()):
+		rows, cols = (int(math.sqrt(n)), int(math.sqrt(n)))
 	else:
-		rows, cols = (int(n/4)+1, 4)
+		rows, cols = (int(math.sqrt(n)+1), int(math.sqrt(n)+1))
 	#create empty matrix
 	mat = [["*" for i in range(cols)] for j in range(rows)]
 
 	#populate unencrpted matrix
 	pos = 0
 	for i in range(rows):
-		for j in range(4):
+		for j in range(cols):
 			if(pos<len(strng)):
 				mat[i][j] = strng[pos]
 				pos += 1
@@ -26,7 +26,7 @@ def encrypt ( strng ):
 				mat[i][j] = "*"
 
 	#create encrpted message
-	for i in range(4):
+	for i in range(cols):
 		for j in range(rows-1, -1, -1):
 			if(mat[j][i] == "*"):
 				continue
