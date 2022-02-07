@@ -39,12 +39,15 @@ def encrypt ( strng ):
 #        and digits
 # Output: function returns an encrypted string 
 def decrypt ( strng ):
+	
+	# calculate the dimension of the matrix
 	 if math.sqrt( len( strng ) ) == int ( math.sqrt( len( strng ) ) ):
                 n = int ( math.sqrt( len( strng ) ) )
         else:
                 n = int( math.sqrt( len( strng ) ) ) + 1
         new_strng = strng
 
+	# create an empty matrix
         decrypted = []
         for i in range ( n ):
                 row = []
@@ -54,7 +57,8 @@ def decrypt ( strng ):
 
         for num in range ( n ** 2 - int( len( strng ) ) ):
                 new_strng += "*"
-
+	
+	# fill in the matrix with the asterisks
         num = 1
         
         for y in range ( n ):
@@ -67,13 +71,16 @@ def decrypt ( strng ):
                                 break
                         x -= 1
         character = 0
-        
+	
+	
+        # fill in the rest of the matrix with the messenge
         for a in range ( len(decrypted) ):
                 for b in range ( len(decrypted[a]) ):
                         if decrypted[a][b] != "*":
                                 decrypted[a][b] = new_strng[ character ]
                                 character += 1
-
+	
+	# decrypt the messenge into a string
         result = ""
         d = n - 1
         while d >= 0:
@@ -85,19 +92,20 @@ def decrypt ( strng ):
         return result
 
 def main():
-  # read the strings P and Q from standard input
+	# read the strings P and Q from standard input
 	P = input()
         Q = input()
-
-  # encrypt the string P
+	
+	# encrypt the string P
 	encrypted = encrypt ( P )
-
-  # decrypt the string Q
+	
+	# decrypt the string Q
 	decrypted = decrypt ( Q )
 
-  # print the encrypted string of P
+	# print the encrypted string of P
 	print ( encrypted )
-  # and the decrypted string of Q
+	
+	# and the decrypted string of Q
 	print ( decrypted )
 
 if __name__ == "__main__":
